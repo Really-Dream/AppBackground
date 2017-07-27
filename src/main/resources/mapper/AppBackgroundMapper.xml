@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.jie.huang.appbackground.mapper.AppBackgroundMapper" >
+
+    <select id="getCount" resultType="Integer">
+        select count(*)+1 count from tb_result where username = #{userid}
+    </select>
+
+    <select id="login" resultType="Integer">
+        select count(*) from tb_user where userid=#{userid} and pwd=#{pwd}
+    </select>
+
+    <select id="beforeCreate" resultType="Integer">
+        select count(*) from tb_user where userid=#{userid}
+    </select>
+
+    <select id="getOrg" resultType="String">
+        select * from tb_org
+    </select>
+
+    <select id="downloadAddress" resultType="String">
+        select * from tb_downloadAddress
+    </select>
+
+    <select id="getTitle" resultType="com.dream.jie.huang.appbackground.entity.Title">
+        SELECT * FROM question ORDER BY RAND( ) LIMIT 13
+    </select>
+
+    <insert id="insertUser">
+        insert into tb_user values(#{userid},#{pwd},#{username},#{org},sysdate())
+    </insert>
+
+    <insert id="insertResult">
+        insert into tb_result values(#{userid},#{grade},sysdate())
+    </insert>
+
+
+
+</mapper>
